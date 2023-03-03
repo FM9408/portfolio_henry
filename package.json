@@ -1,0 +1,30 @@
+{
+  "name": "fm9408_developer_portfolio",
+  "version": "1.0.0",
+  "description": "Mi portafiolo profesional de páginas web y proyectos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm start --workspaces",
+    "dev": "npm run dev --workspaces",
+    "restart": "npm restart --workspaces",
+    "build": "npm run build --workspaces"
+  },
+  "workspaces": ["./*"],
+  "keywords": [
+    "henry",
+    "portfolio",
+    "developer",
+    "javascript",
+    "react",
+    "express",
+    "full-stack",
+    "sequelize",
+    "pg",
+    "postgres",
+    "GCP",
+    "google-run"
+  ],
+  "author": "FM9408",
+  "license": "ISC"
+}
