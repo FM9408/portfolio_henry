@@ -1,5 +1,3 @@
-import { colors } from "@mui/material";
-
 
 export default function AppBar(theme) {
     return {
@@ -13,9 +11,10 @@ export default function AppBar(theme) {
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 5,
+            zIndex: 4,
             transition: 'all 1s ease-in-out',
             ...(ownerState.modo === "claro" && {
-              backgroundColor: theme.palette.secondary.dark,
+              backgroundColor: theme.palette.secondary.main,
             }),
 
             ...(ownerState.modo === "obscuro" && {

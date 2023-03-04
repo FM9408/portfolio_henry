@@ -1,6 +1,5 @@
-import React from "react";
 import { alpha } from "@mui/material/styles";
-import { modeContext } from "../../App";
+
 
 // ----------------------------------------------------------------------
 
@@ -18,10 +17,12 @@ export default function Button(theme) {
           height: 48,
         },
         containedInherit: {
-          color: theme.palette.grey[800],
+          color: 'inherit',
+          backgroundColor: 'inherit',
+          transition: 'all 1s ease-in-out',
           boxShadow: theme.customShadows.z8,
           "&:hover": {
-            backgroundColor: theme.palette.grey[400],
+            backgroundColor: theme.palette.action.hover,
           },
         },
         containedPrimary: {

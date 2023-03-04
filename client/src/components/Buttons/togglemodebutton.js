@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, styled, useTheme, Switch, Stack,  } from '@mui/material';
+import { Grid, styled, useTheme, Switch } from '@mui/material';
 import Theme from '../../theme';
 import { modeContext } from '../../App';
 import { useDispatch } from 'react-redux';

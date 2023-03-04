@@ -1,4 +1,3 @@
-import { colors } from "@mui/material";
 
 export default function Paper(theme) {
     return {
