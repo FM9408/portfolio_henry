@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container, CssBaseline, useTheme, AppBar, Box, Grid } from '@mui/material'
-import { ThemeContext } from '@emotion/react'
+import { CssBaseline, useTheme, AppBar, Box, Grid } from '@mui/material'
 import NavegationButton from '../components/Buttons/navegationButton'
 import { modeContext } from '../App'
 import { buttonsArray } from '../variables/navbarbuttons'
