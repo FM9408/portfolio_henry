@@ -6,7 +6,7 @@ const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000
 
 app.use(express.static(path.join(__dirname, "build")));
 app.name = 'portfolio client'
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
