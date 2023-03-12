@@ -29,7 +29,7 @@ function App() {
                   <div
                       id='Alert'
                       style={{ position: 'absolute', width: '100%', zIndex: '20', padding:'1%', left: '0', paddingTop:'0%', opacity: '0%',
-                            transition: 'opacity 1s ease-in-out',}}
+                            transition: 'opacity 1s ease-in-out', display:'none'}}
                   ></div>
                   <Box>
                       <NavegationBat />
