@@ -63,9 +63,12 @@ sequelize.models = Object.fromEntries(capsEntries)
 
 
 const {
-   Site
+    Site,
+    Image
 } = sequelize.models
 
+Site.belongsTo(Image)
+Image.belongsTo(Site)
 
 
 module.exports = {

@@ -1,4 +1,4 @@
-import { Alert, Box, Typography } from "@mui/material"
+import { Alert, Box, Container, Typography, Paper } from "@mui/material"
 import ReactDOM from 'react-dom'
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
@@ -20,11 +20,17 @@ export default function SitesCards() {
         } else if (status === 'failed') {
             setErrorAlert(error)
             setTimeout(() => {
+                document.getElementById('Alert').style.display = 'flex'
+            }, 0)
+            setTimeout(() => {
                 document.getElementById('Alert').style.opacity = '100%'
-            })
+            }, 500)
             setTimeout(() => {
                 document.getElementById('Alert').style.opacity = '0%'
             }, 6000)
+            setTimeout(() => {
+                document.getElementById('Alert').style.display = 'none'
+            }, 7000)
         } else {
             setSitesArray(sites)
         }
@@ -49,25 +55,35 @@ export default function SitesCards() {
                             width: '100%',
                             display: 'flex',
                             justifyContent: 'center',
-                            alignItems: 'center',
-                            
-                            
+                            alignItems: 'center'
                         }}
                     >
                         <Typography>{errorAlert}</Typography>
                     </Alert>,
                     document.getElementById('Alert')
                 )}
-            {sitesArray.map((site) => {
-                return (
-                    <Box
-                        key={site.id}
-                        sx={{ display: 'inline-flex', margin: 'auto' }}
-                    >
-                        <SiteTumbl site={site} />
+            {sitesArray.length === 0 ? (
+                <Container>
+                    <Box>
+                        <Paper>
+                            <Typography variant="h2">Aún no hay sitios por acá</Typography>
+                        </Paper>
                     </Box>
-                )
-            })}
+                </Container>
+            ) : (
+                <>
+                    {sitesArray.map((site) => {
+                        return (
+                            <Box
+                                key={site.id}
+                                sx={{ display: 'inline-flex', margin: 'auto' }}
+                            >
+                                <SiteTumbl site={site} />
+                            </Box>
+                        )
+                    })}
+                </>
+            )}
         </Box>
     )
 }
