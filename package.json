@@ -8,12 +8,9 @@
     "start": "npm start --workspaces",
     "dev": "npm run dev --workspaces",
     "restart": "npm restart --workspaces",
-    "build": "npm run build --workspaces",
-    "install-all": "npm install -- workspaces"
+    "build": "npm run build --workspaces"
   },
-  "workspaces": [
-    "./*"
-  ],
+  "workspaces": ["./*"],
   "keywords": [
     "henry",
     "portfolio",
@@ -29,8 +26,5 @@
     "google-run"
   ],
   "author": "FM9408",
-  "license": "ISC",
-  "dependencies": {
-    "workspaces": "^0.1.0"
-  }
+  "license": "ISC"
 }
