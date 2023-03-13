@@ -13,8 +13,6 @@ export default function SitesCards() {
     const dispatch = useDispatch()
 
     React.useEffect(() => {
-        console.log(status)
-       
         if (sites.length === 0 && status === 'idle') {
             dispatch(getSites())
         } else if (status === 'failed') {
@@ -34,7 +32,7 @@ export default function SitesCards() {
         } else {
             setSitesArray(sites)
         }
-    }, [status])
+    }, [status, dispatch, error, sites])
     
     return (
         <Box

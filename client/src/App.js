@@ -6,6 +6,7 @@ import NavegationBat from './layouts/Navbar';
 import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import Footer from './layouts/footer';
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : 'http://localhost:3001'
 
@@ -13,19 +14,17 @@ axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? process.env.BAS
 export const modeContext = React.createContext()
 
 function App() {
-  const [padding, setPadding] = React.useState(0)
+    
   const {mode} = useSelector(state => state.configuration)
 
   React.useEffect(() => {
-    if(padding === 0 || padding !== document.getElementById('navbar')?.getBoundingClientRect().height) {
-      setPadding(document.getElementById('navbar').getBoundingClientRect().height)
-    }
-  }, [padding, mode])
+    
+  }, [mode])
   
   return (
       <modeContext.Provider value={mode}>
           <Theme>
-              <Box sx={{ margin: 'auto', padding: '1%' }}>
+              <Box sx={{ margin: 'auto', padding: '1%', position: 'relative'}}>
                   <div
                       id='Alert'
                       style={{ position: 'absolute', width: '100%', zIndex: '20', padding:'1%', left: '0', paddingTop:'0%', opacity: '0%',
@@ -36,6 +35,9 @@ function App() {
                   </Box>
                   <Box>
                       <Router />
+                  </Box>
+                  <Box sx={{position: 'fixed', bottom: '0px', left: '0px', width: '100%'}}>
+                    <Footer />
                   </Box>
               </Box>
           </Theme>
