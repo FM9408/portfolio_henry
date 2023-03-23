@@ -1,4 +1,4 @@
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Divider, Paper} from "@mui/material";
 import '../css/Homepage.css'
 import React from "react";
 import { modeContext } from "../App";

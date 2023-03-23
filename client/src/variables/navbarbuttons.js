@@ -11,7 +11,7 @@ export const buttonsArray = [
   },
   {
     link: 'Sobre mí',
-    href: '/sobre-mi',
+    href: '/sobre_mi',
     id: 'about'
   }
 ];

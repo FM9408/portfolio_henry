@@ -5,10 +5,11 @@ import Theme from './theme/index'
 import NavegationBat from './layouts/Navbar';
 import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import Footer from './layouts/footer';
+import { auth } from './redux/slices/firebaseSlices/authSlice';
+import { onAuthStateChanged } from 'firebase/auth';
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : 'http://localhost:3001'
+
 
 
 export const modeContext = React.createContext()
@@ -18,8 +19,14 @@ function App() {
   const {mode} = useSelector(state => state.configuration)
 
   React.useEffect(() => {
-    
-  }, [mode])
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+            console.log(user)
+          } else {
+              console.log('No user yet')
+        }
+    })
+  }, [mode, auth.currentUser])
   
   return (
       <modeContext.Provider value={mode}>

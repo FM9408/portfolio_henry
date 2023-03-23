@@ -28,7 +28,7 @@ const palette = {
         active: colors.deepPurple[300],
         hover: alpha(colors.deepPurple[700], 0.5)
     },
-    ...colors
+    ...colors,
 }
 
 export default palette
