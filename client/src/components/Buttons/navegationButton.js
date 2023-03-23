@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
-import {Button, Grid, alpha} from '@mui/material'
+import {Button, Grid} from '@mui/material'
 import {styled} from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { changeMode } from '../../redux/slices/configurationSlice';

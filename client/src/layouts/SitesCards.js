@@ -70,7 +70,7 @@ export default function SitesCards() {
                 </Container>
             ) : (
                 <>
-                    {sitesArray.map((site) => {
+                    {sitesArray?.map((site) => {
                         return (
                             <Box
                                 key={site.id}
