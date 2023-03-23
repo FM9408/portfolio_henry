@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, useMediaQuery, useTheme, Grid } from '@mui/material'
+import { Box, useMediaQuery, useTheme, Grid, Typography } from '@mui/material'
 import json2mq from 'json2mq'
 import { footerNavegationButtons } from '../variables/footerButtons'
 import FooterButtons from '../components/Buttons/footerButtos'
@@ -30,13 +30,15 @@ export default function Footer() {
                                 types={'legal'}
                             />
                         </Grid>
+                        <Grid item sx={{width: `${100/3}%`}}>
+                            <Typography variant='body2'>Derechos reservados 2023</Typography>
+                        </Grid>
                         <Grid item sx={{ width: `${100 / 3}%` }}>
                             <FooterButtons
                                 buttons={footerNavegationButtons.redes}
                                 types={'redes'}
                             />
                         </Grid>
-                        <Box></Box>
                     </Grid>
                 </Box>
             ) : (
