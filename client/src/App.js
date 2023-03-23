@@ -21,7 +21,7 @@ function App() {
   React.useEffect(() => {
       onAuthStateChanged(auth, (user) => {
           if (user) {
-            console.log(user)
+            console.log('user logged')
           } else {
               console.log('No user yet')
         }
