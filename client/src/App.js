@@ -4,51 +4,79 @@ import Router from './router';
 import Theme from './theme/index'
 import NavegationBat from './layouts/Navbar';
 import { Box } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Footer from './layouts/footer';
-import { auth } from './redux/slices/firebaseSlices/authSlice';
+import { auth, commonUser } from './redux/slices/firebaseSlices/authSlice';
 import { onAuthStateChanged } from 'firebase/auth';
+import { logInUser } from './redux/slices/userSlice';
 
 
 
 
 export const modeContext = React.createContext()
+export const userContext = React.createContext()
 
 function App() {
     
-  const {mode} = useSelector(state => state.configuration)
+    const { mode } = useSelector(state => state.configuration)
+    const { loggedUser } = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
   React.useEffect(() => {
       onAuthStateChanged(auth, (user) => {
           if (user) {
-            console.log('user logged')
+              dispatch(logInUser(user.toJSON()))
           } else {
-              console.log('No user yet')
-        }
-    })
+             commonUser()
+          } 
+      })
   }, [mode, auth.currentUser])
   
   return (
-      <modeContext.Provider value={mode}>
-          <Theme>
-              <Box sx={{ margin: 'auto', padding: '1%', position: 'relative'}}>
-                  <div
-                      id='Alert'
-                      style={{ position: 'absolute', width: '100%', zIndex: '20', padding:'1%', left: '0', paddingTop:'0%', opacity: '0%',
-                            transition: 'opacity 1s ease-in-out', display:'none'}}
-                  ></div>
-                  <Box>
-                      <NavegationBat />
+      <userContext.Provider value={loggedUser}>
+          <modeContext.Provider value={mode}>
+              <Theme>
+                  <Box
+                      sx={{
+                          margin: 'auto',
+                          padding: '1%',
+                          position: 'relative'
+                      }}
+                  >
+                      <div
+                          id='Alert'
+                          style={{
+                              position: 'absolute',
+                              width: '100%',
+                              zIndex: '20',
+                              padding: '1%',
+                              left: '0',
+                              paddingTop: '0%',
+                              opacity: '0%',
+                              transition: 'opacity 1s ease-in-out',
+                              display: 'none'
+                          }}
+                      ></div>
+                      <Box>
+                          <NavegationBat />
+                      </Box>
+                      <Box>
+                          <Router />
+                      </Box>
+                      <Box
+                          sx={{
+                              position: 'fixed',
+                              bottom: '0px',
+                              left: '0px',
+                              width: '100%'
+                          }}
+                      >
+                          <Footer />
+                      </Box>
                   </Box>
-                  <Box>
-                      <Router />
-                  </Box>
-                  <Box sx={{position: 'fixed', bottom: '0px', left: '0px', width: '100%'}}>
-                    <Footer />
-                  </Box>
-              </Box>
-          </Theme>
-      </modeContext.Provider>
+              </Theme>
+          </modeContext.Provider>
+      </userContext.Provider>
   )
 }
 
