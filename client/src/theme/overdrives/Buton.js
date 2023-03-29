@@ -30,6 +30,12 @@ export default function Button(theme) {
         },
         containedSecondary: {
           boxShadow: theme.customShadows.secondary,
+          color: theme.palette.secondary.contrastText,
+          backgroundColor: theme.palette.secondary.main,
+          transition: 'all .5s ease-in-out',
+          "&:hover": {
+            backgroundColor: theme.palette.action.hover
+          }
         },
         outlinedInherit: {
           border: `1px solid ${alpha(theme.palette.grey[500], 0.32)}`,

@@ -5,6 +5,7 @@ import typography from './typography'
 import palette from './palette'
 import costumeShadows from './costumeShadow'
 import shadows from './shadows'
+import { transitions } from './transitions'
 
 const Theme = ({children}) => {
     const themeOption = React.useMemo(
@@ -13,7 +14,8 @@ const Theme = ({children}) => {
         typography,
         customShadows: costumeShadows(),
         shadows: shadows(),
-        shape: {borderRadius: 6}
+            shape: { borderRadius: 6 },
+        transitions: transitions
       }),
       []
     );

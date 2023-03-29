@@ -9,14 +9,14 @@ connectAuthEmulator(auth, 'http://localhost:9099', {
 
 
 
-export async function getAuthed(email, password) {
+export async function getAuthed({ email, password }) {
     try {
         const credential = await signInWithEmailAndPassword(auth, email, password)
         const user = credential.user
         return user
 
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error.code)
     }
 }
 

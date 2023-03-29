@@ -59,7 +59,7 @@ export default function Carrousel() {
         return (
           loop()
         )
-      },[images.length]);
+      },[images.length, index]);
 
 
     return (

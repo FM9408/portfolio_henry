@@ -3,7 +3,9 @@ import './App.css';
 import Router from './router';
 import Theme from './theme/index'
 import NavegationBat from './layouts/Navbar';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
+import { Logout } from '@mui/icons-material'
+import { loginOut } from './redux/slices/firebaseSlices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from './layouts/footer';
 import { auth, commonUser } from './redux/slices/firebaseSlices/authSlice';
@@ -58,7 +60,20 @@ function App() {
                           }}
                       ></div>
                       <Box>
-                          <NavegationBat />
+                          <userContext.Consumer>
+                              {({ isAnonymous }) => (
+                                  <>
+                                      {isAnonymous === true ? (
+                                          <NavegationBat />
+                                      ) : (
+                                          <IconButton onClick={() => loginOut()}>
+                                              <Logout />
+                                          </IconButton>
+                                      )
+                                      }
+                                  </>
+                              )}
+                          </userContext.Consumer>
                       </Box>
                       <Box>
                           <Router />
