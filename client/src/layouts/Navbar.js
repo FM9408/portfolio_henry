@@ -18,7 +18,7 @@ export default function NavegationBat() {
     return (
         <Box id='navbar'>
             <CssBaseline>
-                <AppBar modo={modo}>
+                <AppBar variant='navbar' modo={modo}>
                     <Grid container direction={'row'}>
                         {buttonsArray.map((bot, index) => {
                             return (
