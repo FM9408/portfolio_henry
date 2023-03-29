@@ -9,7 +9,8 @@
     "dev": "npm run dev --workspaces",
     "restart": "npm restart --workspaces",
     "build": "npm run build --workspaces",
-    "install-all": "npm install -- workspaces"
+    "install-all": "npm install --workspaces",
+    "deploy": "npm run build && npm run deploy --workspaces"
   },
   "workspaces": [
     "./*"
