@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "start nodemon -L",
-    "start": "start node index.js",
+    "start": "node index.js",
     "restart": "npm restart",
-    "build": "docker build . --tag portfolio_henry_api:latest"
+    "build": "docker build . --tag gcr.io/fm9408portfolio/henry-protfolio-api",
+    "auth": "gcloud auth configure docker",
+    "push": "docker push gcr.io/fm9408portfolio/henry-protfolio-api:latest",
+    "deploy": "npm run push && gcloud run deploy portfolio-henry-api --image gcr.io/fm9408portfolio/henry-protfolio-api --allow-unauthenticated --add-cloudsql-instances=fm9408portfolio:us-east1:henry-portfolio-api --memory 512Mi --cpu 1 --port 8080"
   },
   "keywords": [
     "portfolio",

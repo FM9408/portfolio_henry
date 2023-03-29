@@ -16,7 +16,7 @@ const {
 const sequelize =
     process.env.NODE_ENV === 'production'
         ? new Sequelize({
-              protocol: 'postgres',
+              protocol: 'tcp',
               dialect: 'postgres',
               username: DB_USER,
               password: DB_PASSWORD,

@@ -3,5 +3,7 @@ import { connectStorageEmulator, getStorage } from 'firebase/storage'
 
 export const storage = getStorage(app)
 
-connectStorageEmulator(storage, 'localhost', 9199)
+if (process.env.NODE_ENV !== 'production') {
+    connectStorageEmulator(storage, 'localhost', 9199)
+}
 

@@ -3,10 +3,12 @@ import { connectAuthEmulator, getAuth, signInWithEmailAndPassword, signInAnonymo
 
 export const auth = getAuth(app)
 
-connectAuthEmulator(auth, 'http://localhost:9099', {
-    disableWarnings: true
-})
+if (process.env.NODE_ENV !== 'production') {
+    connectAuthEmulator(auth, 'http://localhost:9099', {
+        disableWarnings: true
+    })
 
+}
 
 
 export async function getAuthed({ email, password }) {
