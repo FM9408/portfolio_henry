@@ -3,7 +3,7 @@ export  const transitions = {
         shortest: 150,
         shorter: 200,
         short: 250,
-        standard: 300,
+        standard: 500,
         complex: 375,
         enteringScreen: 225,
         leavingScreen: 195
