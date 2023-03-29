@@ -33,13 +33,12 @@ export default function NavegationButton({button, theme}) {
         }}
       >
         <NavbarButton
+          title={button.link}
           theme={theme}
           variant='contained'
           color='inherit'
           onClick={
-            button.id === "cambiar"
-              ? () => dispatch(changeMode())
-              : () => navigate(`${button.href}`)
+            () => navigate(`${button.href}`)
           }
         >
           {button.link}

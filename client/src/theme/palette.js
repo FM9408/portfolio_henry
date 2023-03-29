@@ -8,6 +8,13 @@ const PRIMARY = {
         contrastText: colors.common.white
 }
 
+const ERROR = {
+    main: colors.red[500]
+}
+const SUCCESS = {
+    main: colors.green[500]
+}
+
 
 const SECONDARY = {
     main: colors.deepPurple[500],
@@ -21,6 +28,8 @@ const SECONDARY = {
 const palette = {
     primary: PRIMARY,
     secondary: SECONDARY,
+    error: ERROR,
+    success: SUCCESS,
     background: {
         default: alpha(colors.common.black, 0.01),
     },
