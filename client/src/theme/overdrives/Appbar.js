@@ -19,10 +19,29 @@ export default function AppBar(theme) {
                             easing: theme.transitions.easing.easeInOut
                         }
                     )}`,
-                    ...(ownerState.modo === 'claro' && {
+                    ...(ownerState.modo === 'claro' &&  {
                         backgroundColor: theme.palette.secondary.main
                     }),
 
+                    ...(ownerState.modo === 'obscuro' && {
+                        filter: 'invert(100%)'
+                    })
+                }),
+                footer: ({ ownerState }) => ({
+                    color: theme.palette.secondary.contrastText,
+                  
+                    
+                    width: '100%',
+                    transition: `${theme.transitions.create(
+                        ['all', 'transform'],
+                        {
+                            duration: theme.transitions.duration.standard,
+                            easing: theme.transitions.easing.easeInOut
+                        }
+                    )}`,
+                    ...(ownerState.modo === 'claro' && {
+                        backgroundColor: theme.palette.secondary.main
+                    }),
                     ...(ownerState.modo === 'obscuro' && {
                         filter: 'invert(100%)'
                     })

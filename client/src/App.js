@@ -3,7 +3,7 @@ import './App.css';
 import Router from './router';
 import Theme from './theme/index'
 import NavegationBat from './layouts/Navbar';
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, useTheme } from '@mui/material';
 import { Logout } from '@mui/icons-material'
 import { loginOut } from './redux/slices/firebaseSlices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +23,7 @@ function App() {
     const { mode } = useSelector(state => state.configuration)
     const { loggedUser } = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const theme = useTheme()
 
   React.useEffect(() => {
       onAuthStateChanged(auth, (user) => {
@@ -41,7 +42,7 @@ function App() {
                   <Box
                       sx={{
                           margin: 'auto',
-                          padding: '1%',
+                          px: '.5%',
                           position: 'relative'
                       }}
                   >
@@ -55,7 +56,14 @@ function App() {
                               left: '0',
                               paddingTop: '0%',
                               opacity: '0%',
-                              transition: 'opacity 1s ease-in-out',
+                              transition: `${theme.transitions.create(
+                                  ['all', 'transform'],
+                                  {
+                                      duration:
+                                          theme.transitions.duration.standard,
+                                      easing: theme.transitions.easing.easeInOut
+                                  }
+                              )}`,
                               display: 'none'
                           }}
                       ></div>
@@ -66,11 +74,12 @@ function App() {
                                       {isAnonymous === true ? (
                                           <NavegationBat />
                                       ) : (
-                                          <IconButton onClick={() => loginOut()}>
+                                          <IconButton
+                                              onClick={() => loginOut()}
+                                          >
                                               <Logout />
                                           </IconButton>
-                                      )
-                                      }
+                                      )}
                                   </>
                               )}
                           </userContext.Consumer>
@@ -83,7 +92,10 @@ function App() {
                               position: 'fixed',
                               bottom: '0px',
                               left: '0px',
-                              width: '100%'
+                              width: '100%',
+                              px: '.5%',
+                              margin: 'auto'
+                              
                           }}
                       >
                           <Footer />

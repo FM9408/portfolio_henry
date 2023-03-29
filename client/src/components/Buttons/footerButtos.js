@@ -18,6 +18,8 @@ export default function FooterButtons({ buttons, types}) {
                                         <Button
                                             color='inherit'
                                             startIcon={button.icon}
+                                            variant='contained'
+                                            
                                         >
                                             {button.button}
                                         </Button>
