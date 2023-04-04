@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize')
 const fs = require('fs')
 const path = require('path')
 
+
 const {
     DB_HOST,
     DB_NAME,
@@ -36,8 +37,8 @@ const sequelize =
               dialectOptions: {
                   ssl: false
               }
-          })
-
+        })
+          
 const basename = path.basename(__filename)
 
 const modelDefiners = []

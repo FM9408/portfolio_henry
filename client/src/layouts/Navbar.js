@@ -1,19 +1,20 @@
 import React from 'react'
-import { CssBaseline, useTheme, AppBar, Box, Grid, IconButton } from '@mui/material'
+import { CssBaseline, useTheme, AppBar, Box, Grid, useMediaQuery } from '@mui/material'
 import NavegationButton from '../components/Buttons/navegationButton'
-import { modeContext, userContext } from '../App'
-import {Logout} from '@mui/icons-material'
+import { modeContext } from '../App'
 import { buttonsArray } from '../variables/navbarbuttons'
 import ToggleModeButton from '../components/Buttons/togglemodebutton'
-import { UserAvatar } from '../components/users&admin/avatar'
 import LoginButton from '../components/Buttons/loginButton'
-import { loginOut } from '../redux/slices/firebaseSlices/authSlice'
+import json2mq from 'json2mq'
+import NavbarMenu from '../components/Menus/navbarMenu'
 
 
 export default function NavegationBat() {
     const theme = useTheme()
   const modo = React.useContext(modeContext)
-  const user = React.useContext(userContext)
+    const mediaQueries = useMediaQuery(json2mq({
+      maxWidth: 900
+  }))
  
     return (
         <Box id='navbar'>
@@ -30,16 +31,13 @@ export default function NavegationBat() {
                             )
                         })}
                         <Box flexGrow={1} />
-                        <ToggleModeButton />
-
-                        {user.isAnonymous === false ? (
-                            <Box>
-                                
-                                <UserAvatar user={user} theme={theme} />
-                            </Box>
-                        ) : (
-                            <LoginButton />
-                        )}
+                        {
+                            mediaQueries === false ? 
+                                <>
+                                    <ToggleModeButton />
+                        <LoginButton />
+                                </> : <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}><NavbarMenu components={[<ToggleModeButton/>, <LoginButton/>]} /></Box>
+                        }
                     </Grid>
                 </AppBar>
             </CssBaseline>
