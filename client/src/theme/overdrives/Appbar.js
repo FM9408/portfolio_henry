@@ -29,9 +29,6 @@ export default function AppBar(theme) {
                 }),
                 footer: ({ ownerState }) => ({
                     color: theme.palette.secondary.contrastText,
-                  
-                    
-                    width: '100%',
                     transition: `${theme.transitions.create(
                         ['all', 'transform'],
                         {
@@ -45,7 +42,8 @@ export default function AppBar(theme) {
                     ...(ownerState.modo === 'obscuro' && {
                         filter: 'invert(100%)'
                     })
-                })
+                }),
+                
             }
         }
     }

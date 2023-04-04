@@ -3,14 +3,18 @@ import './App.css';
 import Router from './router';
 import Theme from './theme/index'
 import NavegationBat from './layouts/Navbar';
-import { Box, IconButton, useTheme } from '@mui/material';
-import { Logout } from '@mui/icons-material'
-import { loginOut } from './redux/slices/firebaseSlices/authSlice';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
+import {
+    auth,
+    commonUser
+} from './redux/slices/firebaseSlices/authSlice'
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from './layouts/footer';
-import { auth, commonUser } from './redux/slices/firebaseSlices/authSlice';
 import { onAuthStateChanged } from 'firebase/auth';
 import { logInUser } from './redux/slices/userSlice';
+import AdminDrawer, { drawerWidth } from './layouts/adminDrawer';
+import json2mq from 'json2mq';
+
 
 
 
@@ -23,6 +27,9 @@ function App() {
     const { mode } = useSelector(state => state.configuration)
     const { loggedUser } = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const mediaQueries = useMediaQuery(json2mq({
+        maxHeight: 700
+    }))
     const theme = useTheme()
 
   React.useEffect(() => {
@@ -40,10 +47,15 @@ function App() {
           <modeContext.Provider value={mode}>
               <Theme>
                   <Box
+                      id='App'
                       sx={{
                           margin: 'auto',
-                          px: '.5%',
-                          position: 'relative'
+                          position: 'relative',
+                          height: 'fit-content',
+                          mx:
+                              loggedUser.isAnonymous === false
+                                  ? `${drawerWidth / 100}%`
+                                  : '.5%'
                       }}
                   >
                       <div
@@ -69,33 +81,40 @@ function App() {
                       ></div>
                       <Box>
                           <userContext.Consumer>
-                              {({ isAnonymous }) => (
+                              {(user) => (
                                   <>
-                                      {isAnonymous === true ? (
+                                      {user.isAnonymous === true ||
+                                      !user.uid ? (
                                           <NavegationBat />
                                       ) : (
-                                          <IconButton
-                                              onClick={() => loginOut()}
-                                          >
-                                              <Logout />
-                                          </IconButton>
+                                          <AdminDrawer />
                                       )}
                                   </>
                               )}
                           </userContext.Consumer>
                       </Box>
-                      <Box>
-                          <Router />
+                      <Box sx={{ width: '100%', height: 'fit-content' }}>
+                          <Router user={loggedUser} />
                       </Box>
                       <Box
+                          id='mainFooter'
                           sx={{
-                              position: 'fixed',
+                              position:
+                                  mediaQueries === false ? 'fixed' : 'static',
                               bottom: '0px',
                               left: '0px',
                               width: '100%',
                               px: '.5%',
-                              margin: 'auto'
-                              
+                              margin: 'auto',
+                              zIndex: 4,
+                              transition: `${theme.transitions.create(
+                                  ['all', 'transform'],
+                                  {
+                                      duration:
+                                          theme.transitions.duration.standard,
+                                      easing: theme.transitions.easing.easeInOut
+                                  }
+                              )}`
                           }}
                       >
                           <Footer />
