@@ -52,9 +52,9 @@ function App() {
                           margin: 'auto',
                           position: 'relative',
                           height: 'fit-content',
-                          mx:
+                          marginLeft:
                               loggedUser.isAnonymous === false
-                                  ? `${drawerWidth / 100}%`
+                                  ? `calc(${theme.spacing(7)} + 1px)`
                                   : '.5%'
                       }}
                   >

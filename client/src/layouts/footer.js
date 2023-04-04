@@ -1,26 +1,23 @@
 import React from 'react'
-import { Box, useMediaQuery, useTheme, Grid, Typography, CssBaseline, AppBar } from '@mui/material'
+import { Box, useMediaQuery, Grid, Typography, CssBaseline, AppBar } from '@mui/material'
 import json2mq from 'json2mq'
 import { footerNavegationButtons } from '../variables/footerButtons'
 import FooterButtons from '../components/Buttons/footerButtos'
-import { modeContext, userContext } from '../App'
-import { drawerWidth, opened } from './adminDrawer'
-import { useSelector } from 'react-redux'
+import { modeContext } from '../App'
+import { drawerWidth } from './adminDrawer'
 
 
 
 
 export default function Footer() {
-   
     const mediaQueries = useMediaQuery(json2mq({
         maxWidth: 900
     }))
+   
     const mode = React.useContext(modeContext)
-    const { opendDrawer } = useSelector((state) => state.configuration)
+   
 
-    React.useEffect(() => {
-        console.log(opendDrawer)
-    }, [opendDrawer])
+   
     return (
         <CssBaseline>
             <AppBar
@@ -32,7 +29,7 @@ export default function Footer() {
                     <Box
                         id='footer'
                         sx={{
-                            width: `calc(100% - ${drawerWidth}px)`
+                            width: `100%`
                         }}
                     >
                         <Grid container direction='row' sx={{ width: '100%' }}>
