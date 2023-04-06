@@ -12,12 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Footer from './layouts/footer';
 import { onAuthStateChanged } from 'firebase/auth';
 import { logInUser } from './redux/slices/userSlice';
-import AdminDrawer, { drawerWidth } from './layouts/adminDrawer';
+import AdminDrawer from './layouts/adminDrawer';
 import json2mq from 'json2mq';
-
-
-
-
+import { socketConnection, ioConn } from './config/sockets';
 
 export const modeContext = React.createContext()
 export const userContext = React.createContext()
@@ -32,10 +29,12 @@ function App() {
     }))
     const theme = useTheme()
 
-  React.useEffect(() => {
+    React.useEffect(() => {
+      socketConnection()
       onAuthStateChanged(auth, (user) => {
           if (user) {
               dispatch(logInUser(user.toJSON()))
+              ioConn.emit('usuario-autentificado', user)
           } else {
              commonUser()
           } 
