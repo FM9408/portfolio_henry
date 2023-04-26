@@ -1,10 +1,55 @@
 import React from 'react'
-import { TextField, FormControlLabel, Checkbox, Button, Box, Grid, Link } from '@mui/material'
+import { TextField, FormControlLabel, Checkbox, Button, Box, Grid, Link, Alert, Typography } from '@mui/material'
+import { auth, createUser } from '../../redux/slices/firebaseSlices/authSlice'
+import ReactDOM from 'react-dom'
 
+export default function LoginForm({ handleSubmit, data, onChange, errors }) {
+    const [createError, setError] = React.useState(null)
+    
+    
+    async function onCreate() {
+        try {
+            const createdUser = await createUser()
+            await auth.updateCurrentUser(createdUser)
+            
+        } catch (error) {
+            setError(
+                'Acceso denegado'
+            )
+             setTimeout(() => {
+                 document.getElementById('Alert').style.display = 'flex'
+             }, 0)
+             setTimeout(() => {
+                 document.getElementById('Alert').style.opacity = '100%'
+             }, 500)
+             setTimeout(() => {
+                 document.getElementById('Alert').style.opacity = '0%'
+             }, 6000)
+             setTimeout(() => {
+                 document.getElementById('Alert').style.display = 'none'
+             }, 7000)
+        }
 
-export default function LoginForm({ handleSubmit, data, onChange, errors}) {
+    }
     return (
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            {createError  &&
+                ReactDOM.createPortal(
+                    <Alert
+                        variant='standard'
+                        severity='error'
+                        sx={{
+                            textAlign: 'center',
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Typography>{createError}</Typography>
+                    </Alert>,
+                    document.getElementById('Alert')
+                )}
             <TextField
                 margin='normal'
                 helperText={errors.email ? errors.email : ''}
@@ -45,8 +90,8 @@ export default function LoginForm({ handleSubmit, data, onChange, errors}) {
                 autoComplete='current-password'
             />
             <FormControlLabel
-                control={<Checkbox value='remember' color='primary' />}
-                label='Remember me'
+                control={<Checkbox value={data.remember} name='remember' color='primary' onChange={(e) => onChange(e)} />}
+                label='Mantener sesión iniciada en este dispositivo'
             />
             <Button
                 type='submit'
@@ -55,18 +100,18 @@ export default function LoginForm({ handleSubmit, data, onChange, errors}) {
                 color='secondary'
                 sx={{ mt: 3, mb: 2 }}
             >
-                Sign In
+                Enviar
             </Button>
-            <Grid container>
-                <Grid item xs>
+            <Grid container sx={{display: 'flex', justifyContent: 'space-around'}}>
+                <Grid item>
                     <Link href='#' variant='body2'>
-                        Forgot password?
+                        Olvidé mi contraseña
                     </Link>
                 </Grid>
                 <Grid item>
-                    <Link to='#' variant='body2'>
-                        {"Don't have an account? Sign Up"}
-                    </Link>
+                    <Button to='#' variant='body2' onClick={() => onCreate()}>
+                        {"Crear una cuenta"}
+                    </Button>
                 </Grid>
             </Grid>
         </Box>

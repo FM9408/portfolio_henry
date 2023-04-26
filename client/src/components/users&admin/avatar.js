@@ -23,7 +23,7 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name, opendDrawer, theme) {
-    console.log(name.split(' ')[0][0])
+   
     return {
         sx: {
             bgcolor: stringToColor(name),
@@ -42,9 +42,7 @@ function stringAvatar(name, opendDrawer, theme) {
 export function UserAvatar({ user}) {
     const { opendDrawer } = useSelector((state) => state.configuration)
     const theme = useTheme()
-    React.useEffect(() => {
-        console.log(user)
-    })
+    
     return (
         <>
             {user.photoURL ? (
@@ -61,7 +59,7 @@ export function UserAvatar({ user}) {
                 />
             ) : (
                 <Avatar
-                    {...stringAvatar(`${user.displayName.toUpperCase()} ${user.email.toUpperCase()}`, opendDrawer, theme)}
+                    {...stringAvatar(`${user?.displayName?.toUpperCase()} ${user?.email?.toUpperCase()}`, opendDrawer, theme)}
                     
                 />
             )}
