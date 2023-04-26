@@ -12,9 +12,7 @@
     "install-all": "npm install --workspaces",
     "deploy": "npm run build && npm run deploy --workspaces"
   },
-  "workspaces": [
-    "./*"
-  ],
+  "workspaces": ["./*"],
   "keywords": [
     "henry",
     "portfolio",
@@ -30,8 +28,5 @@
     "google-run"
   ],
   "author": "FM9408",
-  "license": "ISC",
-  "dependencies": {
-    "workspaces": "^0.1.0"
-  }
+  "license": "ISC"
 }
