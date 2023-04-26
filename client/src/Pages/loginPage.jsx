@@ -11,6 +11,7 @@ import { useTheme } from '@mui/material'
 import { getAuthed, auth } from '../redux/slices/firebaseSlices/authSlice';
 import { useNavigate } from 'react-router-dom'
 import { userContext } from '../App';
+import { socketConnection } from '../config/sockets';
 
 
 
@@ -35,6 +36,7 @@ export default function SignIn() {
     event.preventDefault()
     try {
       const user = await getAuthed(data)
+      
       await auth.updateCurrentUser(user)
      
     } catch (error) {
