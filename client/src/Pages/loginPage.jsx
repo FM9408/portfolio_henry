@@ -28,7 +28,8 @@ export default function SignIn() {
   const [errors, setErrors] = React.useState({})
   const [data, setData] = React.useState({
     email: '',
-    password: ''
+    password: '',
+    remember: false
   })
  
 
@@ -59,11 +60,18 @@ export default function SignIn() {
 
   const onChange = async (e) => {
     setErrors({})
-   try {
-     setData({
+    try {
+      if (e.target.name === 'remember') {
+        setData({
+          ...data,
+          remember:!data.remember
+       })
+      } else {
+        setData({
       ...data,
       [e.target.name]: e.target.value
      })
+     }
      await schema.validate({ ...data, [e.target.name]: e.target.value })
      setErrors({})
    } catch (error) {
@@ -107,7 +115,7 @@ export default function SignIn() {
             }
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Ingresar
           </Typography>
           <LoginForm handleSubmit={handleSubmit} onChange={onChange} data={data} errors={errors} />
         </Box>
