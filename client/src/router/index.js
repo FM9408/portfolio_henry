@@ -5,6 +5,7 @@ import { modeContext, userContext } from '../App'
 import SignIn from '../Pages/loginPage'
 import Homepage from '../Pages/homepaje'
 import AdminDashboard from '../Pages/adminDasboard'
+import UnauthtorizedAccessPage from '../Pages/unauthorizadedAccessPage'
 
 export default function Router({ user }) {
     const mode = React.useContext(modeContext)
@@ -18,7 +19,7 @@ export default function Router({ user }) {
             <Route path='/LogIn' element={<SignIn />} />
             <Route
                 path='/admin/:uid/dashboard'
-                element={user.isAnonymous === false ? <AdminDashboard /> : null}
+                element={user.isAnonymous === false ? <AdminDashboard /> : <UnauthtorizedAccessPage />}
             />
             <Route
                 path='*'
