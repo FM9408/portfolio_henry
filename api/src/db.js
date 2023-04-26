@@ -65,7 +65,8 @@ sequelize.models = Object.fromEntries(capsEntries)
 
 const {
     Site,
-    Image
+    Image,
+    User
 } = sequelize.models
 
 Site.belongsTo(Image)
