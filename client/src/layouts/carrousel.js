@@ -59,7 +59,7 @@ export default function Carrousel() {
         return (
           loop()
         )
-      },[images.length]);
+      },[images.length, index]);
 
 
     return (
@@ -69,7 +69,9 @@ export default function Carrousel() {
                 width: '100%',
                 my: '1%',
                 filter: mode !== 'claro' ? 'invert(100%)' : null,
-                transition: 'all 1s ease-in-out'
+                transition: `${theme.transitions.create(['all', 'transform'], {
+                    duration: theme.transitions.duration.standard
+                })}`
             }}
         >
             <Box
@@ -93,7 +95,13 @@ export default function Carrousel() {
                         boxShadow: theme.shadows[12],
                         overflow: 'hidden',
                         filter: 'blur(8px)',
-                        transition: 'all 1s ease-in-out'
+                        transition: `${theme.transitions.create(
+                            ['all', 'transform'],
+                            {
+                                duration: theme.transitions.duration.standard,
+                                easing: theme.transitions.easing.easeInOut
+                            }
+                        )}`
                     }}
                 >
                     <img
@@ -109,7 +117,13 @@ export default function Carrousel() {
                     id='currentImage'
                     sx={{
                         display: 'flex',
-                        transition: 'all 1s ease-in-out',
+                        transition: `${theme.transitions.create(
+                            ['all', 'transform'],
+                            {
+                                duration: theme.transitions.duration.standard,
+                                easing: theme.transitions.easing.easeInOut
+                            }
+                        )}`,
                         width: '100%',
                         height: '100%',
                         boxShadow: theme.shadows[12],
@@ -124,7 +138,15 @@ export default function Carrousel() {
                             objectFit: 'cover',
                             height: '100%',
                             zIndex: '2',
-                            objectPosition: 'center'
+                            objectPosition: 'center',
+                            transition: `${theme.transitions.create(
+                                ['all', 'transform'],
+                                {
+                                    duration:
+                                        theme.transitions.duration.standard,
+                                    easing: theme.transitions.easing.easeInOut
+                                }
+                            )}`
                         }}
                         alt='Imagen actual'
                     />
@@ -136,7 +158,13 @@ export default function Carrousel() {
                         height: '70%',
                         right: '-20%',
                         top: '10%',
-                        transition: 'all 1s ease-in-out 1s',
+                        transition: `${theme.transitions.create(
+                            ['all', 'transform'],
+                            {
+                                duration: theme.transitions.duration.standard,
+                                easing: theme.transitions.easing.easeInOut
+                            }
+                        )}`,
                         boxShadow: theme.shadows[12],
                         borderRadius: '20px',
                         overflow: 'hidden',

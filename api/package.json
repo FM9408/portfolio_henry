@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "start nodemon -L",
-    "start": "start node index.js",
+    "start": "node index.js",
     "restart": "npm restart",
-    "build": "docker build . --tag portfolio_henry_api:latest"
+    "build": "docker build . --tag gcr.io/fm9408portfolio/henry-portfolio-api",
+    "auth": "gcloud auth configure docker",
+    "push": "docker push gcr.io/fm9408portfolio/henry-portfolio-api:latest",
+    "deploy": "npm run push && gcloud run deploy henry-portfolio-database --image gcr.io/fm9408portfolio/henry-portfolio-api --allow-unauthenticated --add-cloudsql-instances=fm9408portfolio:us-east1:henry-portfolio-database --memory 512Mi --cpu 1 --port 8080"
   },
   "keywords": [
     "portfolio",
@@ -22,13 +25,16 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "helmet": "^6.0.1",
     "morgan": "^1.10.0",
     "pg": "^8.9.0",
-    "sequelize": "^6.29.0"
+    "sequelize": "^6.29.0",
+    "socket.io": "^4.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

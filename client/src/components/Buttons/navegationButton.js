@@ -8,7 +8,7 @@ import { buttonsArray } from '../../variables/navbarbuttons';
 
 
 
-const NavbarButton = styled(Button)(({ theme, color }) => ({
+const NavbarButton = styled(Button)(() => ({
   fontSize: '1.1rem',
   
   py: '1%',
@@ -17,7 +17,6 @@ const NavbarButton = styled(Button)(({ theme, color }) => ({
 }));
 export default function NavegationButton({button, theme}) {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
    
     
 
@@ -33,13 +32,12 @@ export default function NavegationButton({button, theme}) {
         }}
       >
         <NavbarButton
+          title={button.link}
           theme={theme}
           variant='contained'
           color='inherit'
           onClick={
-            button.id === "cambiar"
-              ? () => dispatch(changeMode())
-              : () => navigate(`${button.href}`)
+            () => navigate(`${button.href}`)
           }
         >
           {button.link}

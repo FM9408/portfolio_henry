@@ -1,53 +1,72 @@
 import React from 'react'
-import { Box, useMediaQuery, useTheme, Grid } from '@mui/material'
+import { Box, useMediaQuery, Grid, Typography, CssBaseline, AppBar } from '@mui/material'
 import json2mq from 'json2mq'
 import { footerNavegationButtons } from '../variables/footerButtons'
 import FooterButtons from '../components/Buttons/footerButtos'
+import { modeContext } from '../App'
+import { drawerWidth } from './adminDrawer'
 
 
 
 
 export default function Footer() {
-    const theme = useTheme()
     const mediaQueries = useMediaQuery(json2mq({
-        maxWidth: '900px'
+        maxWidth: 900
     }))
+   
+    const mode = React.useContext(modeContext)
+   
+
+   
     return (
-        <Box
-            sx={{
-                backgroundColor: theme.palette.secondary.main,
-                color: theme.palette.secondary.contrastText,
-                padding: '1%',
-                width: '100%'
-            }}
-        >
-            {mediaQueries === false ? (
-                <Box id='footer' sx={{ width: '100%' }}>
-                    <Grid container direction='row' sx={{ width: '100%' }}>
-                        <Grid item sx={{ width: `${100 / 3}%` }}>
-                            <FooterButtons
-                                buttons={footerNavegationButtons.legal}
-                                types={'legal'}
-                            />
+        <CssBaseline>
+            <AppBar
+                variant='footer'
+                mode={mode}
+                color={mode === 'claro' ? 'secondary' : 'primary'}
+            >
+                {mediaQueries === false ? (
+                    <Box
+                        id='footer'
+                        sx={{
+                            width: `100%`
+                        }}
+                    >
+                        <Grid container direction='row' sx={{ width: '100%' }}>
+                            <Grid item sx={{ width: `${100 / 3}%` }}>
+                                <FooterButtons
+                                    buttons={footerNavegationButtons.legal}
+                                    types={'legal'}
+                                />
+                            </Grid>
+                            <Grid item sx={{ width: `${100 / 3}%` }}>
+                                <Typography variant='body2'>
+                                    Derechos reservados © 2023
+                                </Typography>
+                            </Grid>
+                            <Grid item sx={{ width: `${100 / 3}%` }}>
+                                <FooterButtons
+                                    buttons={footerNavegationButtons.redes}
+                                    types={'redes'}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item sx={{ width: `${100 / 3}%` }}>
-                            <FooterButtons
-                                buttons={footerNavegationButtons.redes}
-                                types={'redes'}
-                            />
+                    </Box>
+                ) : (
+                    <Box
+                        id='footer'
+                        sx={{
+                            width: `calc(100% - ${drawerWidth}px)`
+                        }}
+                    >
+                        <Grid container direction='column'>
+                            <Grid item>hola</Grid>
+                            <Grid item>hola</Grid>
+                            <Grid item>hola</Grid>
                         </Grid>
-                        <Box></Box>
-                    </Grid>
-                </Box>
-            ) : (
-                <Box id='footer'>
-                    <Grid container direction='column'>
-                        <Grid item>hola</Grid>
-                        <Grid item>hola</Grid>
-                        <Grid item>hola</Grid>
-                    </Grid>
-                </Box>
-            )}
-        </Box>
+                    </Box>
+                )}
+            </AppBar>
+        </CssBaseline>
     )
 }
