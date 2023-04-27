@@ -1,4 +1,4 @@
-
+// app bar
 export default function AppBar(theme) {
     return {
         MuiAppBar: {
