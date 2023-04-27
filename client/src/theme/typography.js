@@ -22,10 +22,9 @@ export function responsiveFontSizes({ sm, md, lg }) {
   };
 }
 
-// ----------------------------------------------------------------------
 
-const FONT_PRIMARY = "Public Sans, sans-serif"; // Google Font
-// const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
+const FONT_PRIMARY = "Public Sans, sans-serif"; 
+
 
 const typography = {
   fontFamily: FONT_PRIMARY,

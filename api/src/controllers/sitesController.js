@@ -27,6 +27,9 @@ async function getSites(req = request, res = response) {
     }
 }
 
+
+
+
 async function addSite(req = request, res = response) {
     let { url, imageUrl, name } = req.body
     try {
