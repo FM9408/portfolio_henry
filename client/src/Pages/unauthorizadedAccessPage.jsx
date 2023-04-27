@@ -121,7 +121,7 @@ export default function UnauthtorizedAccessPage() {
 
     return (
         
-            <Box sx={{backgroundColor: 'black', display: 'flex', alignItems: 'center', height: '100%', justifyContent: 'center', width: '100%', height: '100vh'}}>
+            <Box sx={{backgroundColor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh'}}>
                 <Paper sx={{backgroundColor: 'black', textAlign:'center'}}>
                 <StyledTypography opacity={opacity} shadow={shadow }  theme={theme}>No deberías estar aquí</StyledTypography>
                 </Paper>
