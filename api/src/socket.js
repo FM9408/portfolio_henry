@@ -4,7 +4,6 @@ module.exports = (io) => {
             socket.join([user.uid, 'usuarios-online'])
         })
         socket.on('disconnect', (reason) => {
-            
             socket.leave('usuarios-online')
         })
         
