@@ -12,8 +12,11 @@ const io = new ioServer(serverConection, {
 
 require('./src/socket.js')(io)
 
+
 serverConection.listen(port, () => {
    conn.sync({force: true, alter: false})
 })
+
+
 
 

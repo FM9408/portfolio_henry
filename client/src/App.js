@@ -3,7 +3,7 @@ import './App.css';
 import Router from './router';
 import Theme from './theme/index'
 import NavegationBat from './layouts/Navbar';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, useTheme, Paper } from '@mui/material';
 import {
     auth,
     commonUser
@@ -35,9 +35,12 @@ function App() {
           if (user) {
               dispatch(logInUser(user.toJSON()))
               ioConn.emit('usuario-autentificado', user)
+              
+              
           } else {
              commonUser()
           } 
+          
       })
   }, [mode, auth.currentUser])
   
@@ -92,9 +95,13 @@ function App() {
                               )}
                           </userContext.Consumer>
                       </Box>
-                      <Box sx={{ width: '100%', height: 'fit-content' }}>
+                      
+                      <Paper mode={mode}>
+                          < Box sx={{ width: '100%', height: 'fit-content' }}>
                           <Router user={loggedUser} />
-                      </Box>
+                           </Box>
+                     </Paper>
+                     
                       <Box
                           id='mainFooter'
                           sx={{

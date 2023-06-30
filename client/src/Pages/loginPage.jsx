@@ -2,6 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper'
 import {Cancel, Check, Diamond} from '@mui/icons-material'
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -10,8 +11,7 @@ import * as yup from 'yup'
 import { useTheme } from '@mui/material'
 import { getAuthed, auth } from '../redux/slices/firebaseSlices/authSlice';
 import { useNavigate } from 'react-router-dom'
-import { userContext } from '../App';
-import { socketConnection } from '../config/sockets';
+import { userContext, modeContext } from '../App';
 
 
 
@@ -23,6 +23,7 @@ const schema = yup.object({
 
 export default function SignIn() {
   const user = React.useContext(userContext)
+  const mode = React.useContext(modeContext)
   const navigate = useNavigate()
   const theme = useTheme()
   const [errors, setErrors] = React.useState({})
@@ -31,6 +32,7 @@ export default function SignIn() {
     password: '',
     remember: false
   })
+ 
  
 
   const handleSubmit = async (event) => {
@@ -93,9 +95,11 @@ export default function SignIn() {
 
   return (
     
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
+    
+      
+      <CssBaseline>
+        
+          <Box
           sx={{
             marginTop: 8,
             display: 'flex',
@@ -103,7 +107,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-        <Avatar sx={{ m: 1, bgcolor: Object.keys(errors).length !== 0  ? theme.palette.error.main : data.email.length >= 1 && data.password.length >= 1 ? theme.palette.success.main : theme.palette.secondary.dark, display: 'flex', alignContent: 'center', transition: `${theme.transitions.create(['all', 'transform'], {
+        <Avatar sx={{ filter: mode === 'claro' ? null : 'invert(100%)', m: 1, bgcolor: Object.keys(errors).length !== 0  ? theme.palette.error.main : data.email.length >= 1 && data.password.length >= 1 ? theme.palette.success.main : theme.palette.secondary.dark, display: 'flex', alignContent: 'center', transition: `${theme.transitions.create(['all', 'transform'], {
           duration: theme.transitions.duration.complex
         })}` }}>
           {
@@ -117,8 +121,9 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Ingresar
           </Typography>
-          <LoginForm handleSubmit={handleSubmit} onChange={onChange} data={data} errors={errors} />
+            <LoginForm handleSubmit={handleSubmit} onChange={onChange} data={data} errors={errors} navigate={navigate} mode={mode} />
         </Box>
-          </Container>
+      </CssBaseline>
+      
   );
 }

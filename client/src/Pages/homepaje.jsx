@@ -1,4 +1,4 @@
-import { Box, Divider, Paper} from "@mui/material";
+import { Box, Divider} from "@mui/material";
 import '../css/Homepage.css'
 import React from "react";
 import { modeContext } from "../App";
@@ -9,8 +9,8 @@ import SitesCards from "../layouts/SitesCards";
 export default function Homepage() {
     const mode = React.useContext(modeContext)
   return (
-    <Paper mode={mode}>
-      
+   
+      <Box>
       <Box id="mainContainer" sx={{overflow: 'hidden'}}>
           <Carrousel />
       </Box>
@@ -18,6 +18,7 @@ export default function Homepage() {
       <Box>
           <SitesCards />
       </Box>
-      </Paper>
+      </Box>
+     
     )
 }

@@ -3,13 +3,13 @@ export const footerNavegationButtons = {
     legal: [
         {
             button: 'Politica de privacidad',
-            href: '/politica_de_privacidad',
+            href: '/politica-de-privacidad',
             icon: <Policy />,
             id: 'privacy'
         },
         {
             button: 'Términos y condiciones',
-            href: '/terminos y condiciones',
+            href: '/terminos-y-condiciones',
             id: 'terms',
             icon: <Gavel />
         }

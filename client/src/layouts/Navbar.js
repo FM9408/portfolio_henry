@@ -11,11 +11,19 @@ import NavbarMenu from '../components/Menus/navbarMenu'
 
 export default function NavegationBat() {
     const theme = useTheme()
+    const [isPending, startTransition] = React.useTransition()
+    const [page, setPage] = React.useState(document.location.pathname)
   const modo = React.useContext(modeContext)
     const mediaQueries = useMediaQuery(json2mq({
       maxWidth: 900
   }))
- 
+
+    function nextPage(nextPage) {
+        startTransition(() => {
+            setPage(nextPage)
+        })
+    }
+    
     return (
         <Box id='navbar'>
             <CssBaseline>
@@ -27,6 +35,7 @@ export default function NavegationBat() {
                                     key={bot.id}
                                     button={bot}
                                     theme={theme}
+                                    nextPage={nextPage}
                                 />
                             )
                         })}

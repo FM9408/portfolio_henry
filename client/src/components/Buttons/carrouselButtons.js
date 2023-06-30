@@ -1,6 +1,5 @@
-import { IconButton } from "@mui/material";
+import { IconButton, useTheme } from "@mui/material";
 import {ArrowRight, ArrowLeft} from "@mui/icons-material"
-import { useTheme } from "@mui/material";
 import React from "react";
 
 export const CarouselNexButton = ({nextImage}) => {

@@ -32,9 +32,14 @@ const MaterialUISwitch = styled(Switch)(({ theme, mode }) => ({
     },
   },
   "& .MuiSwitch-thumb": {
-    backgroundColor: mode === "obscuro" ? "#003892" : "#001e3c",
+    backgroundColor: mode === "obscuro" ? "#003892" : `${theme.palette.secondary.light}`,
     width: 32,
+    filter: mode === 'claro' ? null : 'invert(100%)',
     height: 32,
+    transition: `${theme.transitions.create(['filter'], {
+      duration: theme.transitions.duration.shortest,
+      easing: theme.transitions.easing.easeIn
+    })}`,
     "&:before": {
       content: "''",
       position: "absolute",
