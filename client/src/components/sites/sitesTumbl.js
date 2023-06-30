@@ -1,13 +1,17 @@
 import * as React from 'react'
-import { Button, CardActionArea, CardActions, Card, CardContent, Typography, CardMedia, Divider } from '@mui/material'
+import { Button, CardActionArea, CardActions, Card, CardContent, Typography, CardMedia, Divider, useTheme } from '@mui/material'
 import { modeContext } from '../../App'
 import { Link } from 'react-router-dom'
 
 export default function SiteTumbl({ site }) {
+    const theme = useTheme()
     const mode = React.useContext(modeContext)
     return (
         <Card sx={{ width: 345, border: '1px solid black', padding: '1%' }}>
-            <Link to={site.url} style={{textDecoration: 'none', color: 'inherit'}}>
+            <Link
+                to={site.url}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+            >
                 <CardActionArea>
                     <CardMedia
                         component='img'
@@ -17,7 +21,14 @@ export default function SiteTumbl({ site }) {
                         sx={{
                             borderRadius: '5px',
                             filter: mode === 'claro' ? null : 'invert(100%)',
-                            transition: 'all 1s ease-in-out'
+                            transition: `${theme.transitions.create(
+                                ['all', 'transform'],
+                                {
+                                    duration:
+                                        theme.transitions.duration.standard,
+                                    easing: theme.transitions.easing.easeInOut
+                                }
+                            )}`
                         }}
                     />
                     <CardContent>
@@ -28,12 +39,18 @@ export default function SiteTumbl({ site }) {
                 </CardActionArea>
             </Link>
             <Divider />
-            <CardActions sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+            <CardActions
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center'
+                }}
+            >
                 <Button size='small' color='primary'>
                     Share
                 </Button>
                 <Button size='small' color='primary'>
-                        Like
+                    Like
                 </Button>
             </CardActions>
         </Card>

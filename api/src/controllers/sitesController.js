@@ -31,7 +31,7 @@ async function getSites(req = request, res = response) {
 
 
 async function addSite(req = request, res = response) {
-    let { url, imageUrl, name } = req.body
+    let { url, imageUrl, name, description } = req.body
     try {
         const [createdSite, isCreated] = await Site.findOrCreate({
             where: {
@@ -39,11 +39,11 @@ async function addSite(req = request, res = response) {
             },
             defaults: {
                 url,
-                name
+                name,
+                description
             },
             include: Image
         })
-        console.log(isCreated)
         if (isCreated === false) {
             res.status(200).json({
                 msg: 'El sitio ya fue creado',
@@ -55,6 +55,7 @@ async function addSite(req = request, res = response) {
                 url: imageUrl,
             })
             await createdImage.setSite(createdSite)
+            
             res.status(201).send(createdSite)
         }
     } catch (error) {

@@ -2,8 +2,6 @@ import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {Button, Grid} from '@mui/material'
 import {styled} from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
-import { changeMode } from '../../redux/slices/configurationSlice';
 import { buttonsArray } from '../../variables/navbarbuttons';
 
 
@@ -15,7 +13,7 @@ const NavbarButton = styled(Button)(() => ({
   width: '100%',
  
 }));
-export default function NavegationButton({button, theme}) {
+export default function NavegationButton({button, theme, nextPage}) {
     const navigate = useNavigate()
    
     
@@ -37,7 +35,10 @@ export default function NavegationButton({button, theme}) {
           variant='contained'
           color='inherit'
           onClick={
-            () => navigate(`${button.href}`)
+            () => {
+              navigate(`${button.href}`)
+              nextPage(`${button.href}`)
+            }
           }
         >
           {button.link}
